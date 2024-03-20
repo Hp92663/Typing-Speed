@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Speed Test</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+  }
+  #quote {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  #input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  #results {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Typing Speed Test</h1>
+  <p>Type the following text:</p>
+  <p id="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <input type="text" id="input" placeholder="Start typing here...">
+  <div id="results"></div>
+</div>
+
+<script>
+  const quoteElement = document.getElementById('quote');
+  const inputElement = document.getElementById('input');
+  const resultsElement = document.getElementById('results');
+
+  let startTime;
+  let endTime;
+
+  // Generate a random quote for typing test
+  const quotes = [
+    // "nation",
+    "000000000000000000",
+  
+  ];
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  quoteElement.textContent = randomQuote;
+
+  inputElement.addEventListener('input', () => {
+    if (!startTime) {
+      startTime = Date.now();
+    }
+    if (inputElement.value === randomQuote) {
+      endTime = Date.now();
+      const totalTime = (endTime - startTime) / 1000;
+      const wordsCount = randomQuote.split(' ').length;
+      const typingSpeed = Math.round((wordsCount / totalTime) * 60);
+      resultsElement.textContent = `Your typing speed: ${typingSpeed} words per minute (wpm)`;
+    }
+  });
+</script>
+
+</body>
+</html>
